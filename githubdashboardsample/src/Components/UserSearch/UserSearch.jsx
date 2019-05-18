@@ -49,6 +49,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 UserSearch.propTypes = {
   className: PropTypes.string,
+  user: PropTypes.object,
+  repos: PropTypes.array,
 };
 
 export default compose(connect(mapStateToProps,mapDispatchToProps), userSearchWrapper)(UserSearch);
