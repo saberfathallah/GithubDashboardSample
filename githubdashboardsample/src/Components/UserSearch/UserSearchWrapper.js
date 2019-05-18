@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export default Component => styled(Component)`
+  .user-search {
+    margin-bottom: 10px;
+  }
   .userSearch-input_search {
     border: none;
     height: 30px;
