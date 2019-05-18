@@ -3,15 +3,23 @@ import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import userWrapper from './UserWrapper';
 
-const User = ({ user, className, repos }) => (
-  <div className={className}>
-    <div className="user-block">
-      <img className="user-block-img" src={user.avatar_url} alt='' />
-      <p>{user.login}</p>
+const User = ({ user, className, repos }) => {
+  const reposUser = map(repos, (rep) => (
+    <div key={rep.id} className="user-repos">
+      <p className="user-repos_icon">....</p>
+      <p key={rep.id}>{rep.name}</p>
     </div>
-    {repos.length > 0 && map(repos, (rep) => <p key={rep.id}>{rep.name}</p>)}
+  ));
+  return (
+    <div className={className}>
+      <div className="user-block">
+        <img className="user-block-img" src={user.avatar_url} alt='' />
+        <p>{user.login}</p>
+      </div>
+      {repos.length > 0 && reposUser}
   </div>
 );
+}
 
 User.propTypes = {
   user: PropTypes.object,
