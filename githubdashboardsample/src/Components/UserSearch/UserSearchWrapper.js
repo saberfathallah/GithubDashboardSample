@@ -6,10 +6,12 @@ export default Component => styled(Component)`
   .user-search {
     margin-bottom: 10px;
   }
+
   .userSearch-input_search {
     border: none;
     height: 30px;
   }
+
   .userSearch-button_search {
     height: 30px;
     color: white;

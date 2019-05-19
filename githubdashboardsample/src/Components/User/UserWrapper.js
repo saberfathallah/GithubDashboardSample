@@ -6,8 +6,9 @@ export default Component => styled(Component)`
   width: 19%;
 
   .user-block {
-     display: flex;
+    display: flex;
   }
+
   .user-block-img {
     width: 50px;
     height: 50px;

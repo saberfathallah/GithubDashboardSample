@@ -12,15 +12,16 @@ const User = ({ user, className, repos, history }) => {
       <p key={rep.id}>{rep.name}</p>
     </div>
   ));
+
   return (
     <div className={className}>
       {user.id &&
       <div>
-      <div className="user-block">
-        <img className="user-block-img" src={user.avatar_url} alt='' />
-        <p>{user.login}</p>
-      </div>
-      {repos.length > 0 && reposUser}
+        <div className="user-block">
+          <img className="user-block-img" src={user.avatar_url} alt='' />
+          <p>{user.login}</p>
+        </div>
+        {repos.length > 0 && reposUser}
       </div>
     }
   </div>

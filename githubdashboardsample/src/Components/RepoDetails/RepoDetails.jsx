@@ -7,6 +7,7 @@ const RepoDetails = ({ match : { params : { index } }, repos, user }) => {
   if (!user.id) {
     return <Redirect to="/" />;
   }
+
   return (
     <div style={{ boxShadow: 'inset 0 0 1em #e6e5df, 0 0 2em #ffffff', paddingBottom: '20px' }}>
       <img style={{ display: 'inline-block', width: '50px', height: '50px', borderRadius: '50%', marginRight: '5px' }} src={user.avatar_url} alt='' />
@@ -24,12 +25,10 @@ const RepoDetails = ({ match : { params : { index } }, repos, user }) => {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    repos: state.userReducer.repos,
-    user: state.userReducer.user,
-  };
-}
+const mapStateToProps = (state) => ({
+  repos: state.userReducer.repos,
+  user: state.userReducer.user,
+});
 
 RepoDetails.propTypes = {
   className: PropTypes.string,

@@ -16,23 +16,24 @@ class UserSearch extends Component {
   handleChange = event => {
     this.setState({
       searchValue: event.target.value,
-    })
+    });
   };
 
   search = async () => {
     const { searchUser } = this.props;
     const { searchValue } = this.state;
-    this.setState({ searchValueError: '' })
+    this.setState({ searchValueError: '' });
     if (searchValue) {
       await searchUser(searchValue);
     } else {
-      this.setState({ searchValueError: 'empty input' })
+      this.setState({ searchValueError: 'empty input' });
     }
   }
 
   render() {
     const { className, user, repos, errorSearch, isLoading } = this.props;
     const { searchValueError } = this.state;
+
     return(
       <div className={className}>
         <div className="user-search">
@@ -52,14 +53,12 @@ class UserSearch extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.userReducer.user,
-    repos: state.userReducer.repos,
-    errorSearch: state.userReducer.error,
-    isLoading: state.userReducer.isLoading,
-  };
-}
+const mapStateToProps = (state) => ({
+  user: state.userReducer.user,
+  repos: state.userReducer.repos,
+  errorSearch: state.userReducer.error,
+  isLoading: state.userReducer.isLoading,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   searchUser: (login) => {
