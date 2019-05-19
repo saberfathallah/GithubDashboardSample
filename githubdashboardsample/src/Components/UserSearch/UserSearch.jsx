@@ -31,7 +31,7 @@ class UserSearch extends Component {
   }
 
   render() {
-    const { className, user, repos, errorSearch } = this.props;
+    const { className, user, repos, errorSearch, isLoading } = this.props;
     const { searchValueError } = this.state;
     return(
       <div className={className}>
@@ -45,7 +45,7 @@ class UserSearch extends Component {
           />
           <button onClick={this.search} className="userSearch-button_search">SEARCH</button>
         </div>
-        {searchValueError.length === 0 ? 
+        {isLoading ? <p>loading....</p> : searchValueError.length === 0 ? 
           (!errorSearch) ? <User user={user} repos={repos} /> : <p>error try again</p> : <p>{searchValueError}</p>}
       </div>
     );
@@ -57,6 +57,7 @@ const mapStateToProps = (state) => {
     user: state.userReducer.user,
     repos: state.userReducer.repos,
     errorSearch: state.userReducer.error,
+    isLoading: state.userReducer.isLoading,
   };
 }
 
@@ -70,6 +71,7 @@ UserSearch.propTypes = {
   className: PropTypes.string,
   user: PropTypes.object,
   repos: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 export default compose(connect(mapStateToProps,mapDispatchToProps), userSearchWrapper)(UserSearch);
