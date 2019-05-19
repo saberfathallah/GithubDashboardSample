@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export default Component => styled(Component)`
+   margin-top: 125px;
+
   .user-search {
     margin-bottom: 10px;
   }

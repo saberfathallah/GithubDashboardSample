@@ -5,8 +5,13 @@ export default Component => styled(Component)`
   color: white;
   background: #08d4f7;
   text-align: center;
-  
+  display: flex;
+  justify-content:center;
+  align-content:center;
+  flex-direction:column;
+
   .header-title {
     font-size: 24px;
+    vertical-align: middle;
   }
 `;
