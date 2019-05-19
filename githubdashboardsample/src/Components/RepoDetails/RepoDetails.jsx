@@ -3,22 +3,23 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const RepoDetails = ({ match : { params : { index } }, repos, user}) => {
+const RepoDetails = ({ match : { params : { index } }, repos, user }) => {
   if (!user.id) {
     return <Redirect to="/" />;
-  } 
+  }
   return (
-    <div>
-      <div className="user-block">
-        <img className="user-block-img" src={user.avatar_url} alt='' />
+    <div style={{ boxShadow: 'inset 0 0 1em #e6e5df, 0 0 2em #ffffff', paddingBottom: '20px' }}>
+      <img style={{ display: 'inline-block', width: '50px', height: '50px', borderRadius: '50%', marginRight: '5px' }} src={user.avatar_url} alt='' />
+      <div style={{ display: 'inline-block' }}>
         <p>{user.login}</p>
+        <p>{user.url}</p>
       </div>
       <p>{repos[index].name}</p>
-      <p>{repos[index].description}</p>
       <p>{repos[index].language}</p>
       <p>{repos[index].stargazers_count}</p>
+      <p>{repos[index].description}</p>
       <p>{repos[index].updated_at}</p>
-      <p>{repos[index].url}</p>
+      <a href='https://github.com'>https://github.com</a>
     </div>
   );
 }
