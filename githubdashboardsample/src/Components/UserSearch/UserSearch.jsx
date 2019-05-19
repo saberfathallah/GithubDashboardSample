@@ -8,15 +8,31 @@ import { searchUser } from './actions';
 
 class UserSearch extends Component {
 
-  handleChange = async (event) => {
+  state= {
+    searchValue: '',
+    searchValueError: '',
+  }
+
+  handleChange = event => {
+    this.setState({
+      searchValue: event.target.value,
+    })
+  };
+
+  search = async () => {
     const { searchUser } = this.props;
-    if (event.target.value) {
-      await searchUser(event.target.value);
+    const { searchValue } = this.state;
+    this.setState({ searchValueError: '' })
+    if (searchValue) {
+      await searchUser(searchValue);
+    } else {
+      this.setState({ searchValueError: 'empty input' })
     }
   }
 
   render() {
     const { className, user, repos, errorSearch } = this.props;
+    const { searchValueError } = this.state;
     return(
       <div className={className}>
         <div className="user-search">
@@ -24,11 +40,13 @@ class UserSearch extends Component {
             placeholder="Username"
             className="userSearch-input_search"
             type="search"
+            value={this.state.searchValue}
             onChange={(e) => this.handleChange(e)}
           />
-          <button className="userSearch-button_search">SEARCH</button>
+          <button onClick={this.search} className="userSearch-button_search">SEARCH</button>
         </div>
-        {!errorSearch ? <User user={user} repos={repos} /> : <p>error try again</p>}
+        {searchValueError.length === 0 ? 
+          (!errorSearch) ? <User user={user} repos={repos} /> : <p>error try again</p> : <p>{searchValueError}</p>}
       </div>
     );
   }
