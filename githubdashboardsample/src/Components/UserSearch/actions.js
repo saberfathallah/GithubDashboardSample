@@ -32,7 +32,6 @@ export const searchUser = (login) => {
       dispatch(searchUserSuccess(response.data, repos));
     })
     .catch(error=> { 
-      console.log('icii', error)
       dispatch(searchUserFailed(error));
       throw(error);
     });
