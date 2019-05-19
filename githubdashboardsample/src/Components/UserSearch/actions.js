@@ -14,6 +14,15 @@ export const searchUserSuccess = (user, repos) => {
   }
 }
 
+export const searchUserFailed = (error) => {
+  return {
+    type : SEARCH_USER,
+    payload :{
+      error,
+    }
+  }
+}
+
 export const searchUser = (login) => {
   return(dispatch) => {
      axios.get(`${apiUrl}${login}`)
@@ -23,6 +32,8 @@ export const searchUser = (login) => {
       dispatch(searchUserSuccess(response.data, repos));
     })
     .catch(error=> { 
+      console.log('icii', error)
+      dispatch(searchUserFailed(error));
       throw(error);
     });
   };

@@ -16,7 +16,7 @@ class UserSearch extends Component {
   }
 
   render() {
-    const { className, user, repos } = this.props;
+    const { className, user, repos, errorSearch } = this.props;
     return(
       <div className={className}>
         <div className="user-search">
@@ -28,7 +28,7 @@ class UserSearch extends Component {
           />
           <button className="userSearch-button_search">SEARCH</button>
         </div>
-        {user.id && <User user={user} repos={repos} />}
+        {!errorSearch ? <User user={user} repos={repos} /> : <p>error try again</p>}
       </div>
     );
   }
@@ -38,6 +38,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.userReducer.user,
     repos: state.userReducer.repos,
+    errorSearch: state.userReducer.error,
   };
 }
 
