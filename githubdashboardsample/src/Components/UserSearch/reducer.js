@@ -1,4 +1,4 @@
-import { SEARCH_USER_SUCCESS, SEARCH_USER_FAILED, SEARCH_USER_LOADING } from './constants';
+import { SEARCH_USER_SUCCESS, SEARCH_USER_FAILED, SEARCH_USER_LOADING, ADD_EVENT, DISPASH_EVENT } from './constants';
 
 const initialState = {
   user: {},
@@ -18,6 +18,11 @@ function userReducer(state = initialState, action) {
     
     case SEARCH_USER_LOADING:
       return { ...state, isLoading: action.payload.isLoading };  
+    
+      case ADD_EVENT:
+        return { ...state, selector: action.payload.selector, type: action.payload.type, isLoading: false };
+        case DISPASH_EVENT:
+          return { ...state, isLoading: false };   
 
     default:
       return state;

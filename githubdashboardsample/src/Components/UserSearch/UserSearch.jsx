@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import userSearchWrapper from './UserSearchWrapper';
 import User from '../User';
-import { searchUser } from './actions';
+import { searchUser, addEvent } from './actions';
 
 class UserSearch extends Component {
 
@@ -31,7 +31,7 @@ class UserSearch extends Component {
   }
 
   render() {
-    const { className, user, repos, errorSearch, isLoading } = this.props;
+    const { className, user, repos, errorSearch, isLoading, addEvent } = this.props;
     const { searchValueError } = this.state;
 
     return(
@@ -45,6 +45,10 @@ class UserSearch extends Component {
             onChange={(e) => this.handleChange(e)}
           />
           <button onClick={this.search} className="userSearch-button_search">SEARCH</button>
+          <button onClick={() =>{ 
+            console.log('hereee')
+            addEvent('click', 'id-event')
+            }} id="id-event" className="userSearch-button_search1">test Event</button>
         </div>
         {isLoading ? <p>loading....</p> : searchValueError.length === 0 ? 
           (!errorSearch) ? <User user={user} repos={repos} /> : <p>error try again</p> : <p>{searchValueError}</p>}
@@ -63,6 +67,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   searchUser: (login) => {
     dispatch(searchUser(login));
+  },
+  addEvent: (type, selector) => {
+    dispatch(addEvent(type, selector));
   },
 });
 
